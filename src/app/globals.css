@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
+/*
+ * ธีมสี: การเดินทางยามค่ำ + พระอาทิตย์ตก (warm sunset + deep night)
+ * โทนอบอุ่น โรแมนติก เข้ากับธีมท่องเที่ยวด้วยกัน
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f1ece2; /* ครีมนวลแบบกระดาษ ลดความจ้า อ่านนานๆ ไม่ล้าตา */
+  --foreground: #453d34; /* น้ำตาลนุ่ม ลด contrast ที่แข็งเกินไป */
+
+  --night: #2a2740; /* กลางคืนนุ่ม ไม่ดำจัด (deep indigo อมม่วง) */
+  --night-2: #37324f;
+  --cream: #f1ece2;
+  --sand: #e7dccb; /* ทรายเข้มขึ้นเล็กน้อยให้แถบ quote ยังแยกออกจากพื้นหลัง */
+
+  --sunset: #dd9070; /* ส้มพระอาทิตย์ตก แบบมุ้งมิ้งลดความแสบตา */
+  --rose: #cf7189; /* ชมพูกุหลาบนุ่ม */
+  --gold: #d3a869; /* ทองหม่น สบายตา */
+  --teal: #519089; /* เขียวมรกตนุ่ม */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-night: var(--night);
+  --color-night-2: var(--night-2);
+  --color-cream: var(--cream);
+  --color-sand: var(--sand);
+
+  --color-sunset: var(--sunset);
+  --color-rose: var(--rose);
+  --color-gold: var(--gold);
+  --color-teal: var(--teal);
+
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+/* แถบเลื่อนโทนอุ่น */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--sand);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--sunset);
+  border-radius: 999px;
+  border: 2px solid var(--sand);
+}
+
+/* เคารพผู้ใช้ที่ปิดอนิเมชัน */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ยูทิลิตี้พื้นหลังไล่เฉดพระอาทิตย์ตก (ปรับให้เฉดนุ่มขึ้น ไม่จัดจ้าน) */
+.bg-sunset-gradient {
+  background: linear-gradient(160deg, #2a2740 0%, #443a53 40%, #8a6070 72%, #dd9070 100%);
+}
+
+.bg-night-gradient {
+  background: linear-gradient(180deg, #2a2740 0%, #37324f 100%);
+}
+
+.text-balance {
+  text-wrap: balance;
 }

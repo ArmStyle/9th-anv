@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 9 ปีของเรา 💕
 
-## Getting Started
+เว็บเซอร์ไพรส์ครบรอบ 9 ปี ธีมการเดินทางท่องเที่ยวด้วยกัน
+เล่าเรื่องแบบเลื่อนลง (scroll storytelling) มี animation ลื่นๆ รูป/วิดีโอแทรกเป็นช่วง และเพลงบรรเลงประกอบ
 
-First, run the development server:
+เป็น frontend ล้วน ไม่มี backend — deploy ขึ้น Vercel ได้เลย
+
+## เทคโนโลยี
+
+- **Next.js 16** (App Router) + **React 19**
+- **Tailwind CSS v4** สำหรับสไตล์
+- **Framer Motion** สำหรับ animation
+- ฟอนต์ไทย **Noto Sans Thai** / **Noto Serif Thai** (ผ่าน `next/font`)
+
+## รันในเครื่อง
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+เปิด http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+คำสั่งอื่นๆ:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # สร้าง production build
+npm start       # รัน production build ในเครื่อง
+npm test        # รันเทสต์ (Vitest)
+npm run lint    # ตรวจโค้ดด้วย ESLint
+```
 
-## Learn More
+## แก้เนื้อหา (ข้อความ/รูป/วิดีโอ)
 
-To learn more about Next.js, take a look at the following resources:
+เนื้อหาทั้งหมดอยู่ในไฟล์เดียว: **`src/content/story.ts`**
+แก้ข้อความ เพิ่ม/ลบ chapter หรือสลับลำดับได้ที่นี่โดยไม่ต้องแตะโค้ดส่วนอื่น
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+โครงสร้างของแต่ละ chapter (ดูชนิดข้อมูลได้ที่ `src/content/types.ts`):
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| type         | ใช้ทำอะไร                        | ฟิลด์หลัก                                  |
+| ------------ | -------------------------------- | ------------------------------------------ |
+| `text-image` | ข้อความ + รูปเดียว (สลับซ้าย/ขวา) | `title`, `body`, `image`, `side`, `place`  |
+| `gallery`    | แกลเลอรีหลายรูป                   | `title`, `images[]`, `place`               |
+| `video`      | วิดีโอ (คลิกเล่น)                 | `src`, `poster`, `caption`, `place`        |
+| `quote`      | ประโยคซึ้งๆ คั่นระหว่างทริป       | `text`                                     |
 
-## Deploy on Vercel
+`place` = `{ city, country, period }` สำหรับแสดงป้ายสถานที่/ช่วงเวลาของทริป
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### ลูกเล่น animation ประจำสถานที่ (`effect`)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+แต่ละ chapter ใส่ฟิลด์ `effect` เพื่อโชว์ลูกเล่นลอยในฉากได้ (ออปชัน):
+
+| effect        | ลูกเล่น              | เหมาะกับ           |
+| ------------- | -------------------- | ------------------ |
+| `sakura`      | กลีบซากุระร่วง       | ญี่ปุ่น            |
+| `lantern`     | โคมแดง/ทองลอย        | จีน                |
+| `sky-lantern` | โคมลอยผิงซีลอยขึ้น    | ไต้หวัน            |
+| `neon`        | แสงนีออนวูบวาบ       | ฮ่องกง             |
+| `snow`        | หิมะตก               | สวิตเซอร์แลนด์     |
+| `aurora`      | แสงเหนือเรืองรอง     | ไอซ์แลนด์          |
+| `leaves`      | ใบไม้ร่วง            | เกาหลี/ฤดูใบไม้    |
+| `beach`       | แสงแดด/ฟองอากาศ      | ทะเล/บาหลี         |
+| `sparkle`     | ประกายไฟระยิบ        | ปารีส/หอไอเฟล      |
+| `none`        | ไม่มีลูกเล่น         | —                  |
+
+### ลูกเล่นว้าวๆ อื่นๆ
+
+- **หัวใจวิ่งตามเมาส์** — ขยับเมาส์แล้วหัวใจเล็กๆ จะโปรยตามไป (เฉพาะเมาส์ ไม่ทำงานบนมือถือเพื่อไม่ให้รก)
+- **เอฟเฟกต์พิมพ์ดีดในจดหมาย** — ย่อหน้าในจดหมายปิดท้ายจะถูกพิมพ์ทีละตัวตามลำดับเหมือนกำลังเขียนสด
+- **แผนที่เส้นทาง** (ก่อนจดหมาย) — หมุดทุกเมืองเรียงตามทริป + เส้นบินที่ค่อยๆ วาดขึ้นตอนเลื่อนเข้ามา
+- **หัวใจระเบิด** — เมื่อเลื่อนถึงจดหมายปิดท้าย หัวใจจะกระจายฉลองครั้งหนึ่ง
+
+> ปรับความเร็วพิมพ์ดีดได้ที่ `TYPE_SPEED` ใน `src/components/sections/Closing.tsx`
+
+## ใส่รูป/วิดีโอ/เพลงจริง
+
+รูปและวิดีโอเก็บในโฟลเดอร์ **`public/media/`** (ตอนนี้เป็นรูป placeholder แบบ SVG)
+
+1. **รูป** — วางไฟล์ (`.jpg`, `.png`, `.webp`) ลงใน `public/media/`
+   แล้วแก้ค่า `src` ใน `story.ts` ให้ชี้ไฟล์ใหม่ เช่น `"/media/tokyo-1.jpg"`
+2. **วิดีโอ** — วางไฟล์ `.mp4` ลงใน `public/media/` ตามชื่อที่อ้างใน `story.ts`
+   (ค่าเริ่มต้นคือ `/media/paris.mp4`) แนะนำให้ย่อขนาดก่อนเพื่อโหลดไว
+   ถ้ายังไม่มีไฟล์วิดีโอ เว็บจะแสดงรูป poster แทน (ไม่พัง)
+3. **เพลงบรรเลง** — วางไฟล์ `music.mp3` ลงใน `public/media/`
+   ถ้ายังไม่มี ปุ่มเปิด/ปิดเพลงจะยังอยู่แต่ไม่มีเสียง (ไม่พัง)
+   ใช้เพลงที่มีลิขสิทธิ์ให้ใช้ได้ (royalty-free) เพื่อความสบายใจ
+
+> รายละเอียดเพิ่มเติมดูที่ `public/media/README.md`
+> อยากสร้างรูป placeholder ใหม่: `node scripts/gen-placeholders.mjs`
+
+## Deploy ขึ้น Vercel
+
+### วิธีที่ 1: ผ่าน GitHub (แนะนำ)
+
+1. push โปรเจคขึ้น GitHub repo
+2. ไปที่ https://vercel.com → **Add New Project** → เลือก repo นี้
+3. Vercel จะตรวจเจอว่าเป็น Next.js และตั้งค่าให้เอง กด **Deploy** ได้เลย
+4. เสร็จแล้วจะได้ URL (เช่น `your-project.vercel.app`) ส่งให้แฟนเปิดบนมือถือได้
+
+### วิธีที่ 2: ผ่าน Vercel CLI
+
+```bash
+npm i -g vercel
+vercel          # deploy preview
+vercel --prod   # deploy production
+```
+
+## ปรับแต่งเพิ่มเติม
+
+- **สี/ธีม** — แก้ตัวแปรสีใน `src/app/globals.css` (โทน sunset/night/gold ฯลฯ)
+- **หน้า intro / hero / จดหมายปิดท้าย** — แก้ใน `src/content/story.ts` (`intro`, `hero`, `closing`)
+- **ลูกเล่น interactive เพิ่มเติม** (เปิดของขวัญ, easter egg) — มี TODO คั่นไว้ท้าย `src/components/sections/Closing.tsx`
+
+## การเข้าถึง (Accessibility)
+
+- รองรับ `prefers-reduced-motion` — ผู้ที่ตั้งค่าลดการเคลื่อนไหวจะเห็นแค่ fade เบาๆ
+- รูปทุกใบมี `alt`, ปุ่มมี `aria-label`
+
+---
+
+ทำด้วยใจ ❤️

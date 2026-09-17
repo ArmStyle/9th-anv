@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2740"/>
+      <stop offset="55%" stop-color="#7a5563"/>
+      <stop offset="100%" stop-color="#dd9070"/>
+    </linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="60%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.42"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <circle cx="5" cy="8" r="0.6" fill="#fff" opacity="0.4"/><circle cx="102" cy="69" r="1.2" fill="#fff" opacity="0.52"/><circle cx="199" cy="130" r="1.7999999999999998" fill="#fff" opacity="0.64"/><circle cx="296" cy="191" r="0.6" fill="#fff" opacity="0.4"/><circle cx="393" cy="252" r="1.2" fill="#fff" opacity="0.52"/><circle cx="490" cy="313" r="1.7999999999999998" fill="#fff" opacity="0.64"/><circle cx="587" cy="374" r="0.6" fill="#fff" opacity="0.4"/><circle cx="684" cy="435" r="1.2" fill="#fff" opacity="0.52"/><circle cx="781" cy="496" r="1.7999999999999998" fill="#fff" opacity="0.64"/><circle cx="878" cy="57" r="0.6" fill="#fff" opacity="0.4"/><circle cx="975" cy="118" r="1.2" fill="#fff" opacity="0.52"/><circle cx="1072" cy="179" r="1.7999999999999998" fill="#fff" opacity="0.64"/><circle cx="1169" cy="240" r="0.6" fill="#fff" opacity="0.4"/><circle cx="1266" cy="301" r="1.2" fill="#fff" opacity="0.52"/><circle cx="1363" cy="362" r="1.7999999999999998" fill="#fff" opacity="0.64"/><circle cx="1460" cy="423" r="0.6" fill="#fff" opacity="0.4"/><circle cx="1557" cy="484" r="1.2" fill="#fff" opacity="0.52"/><circle cx="54" cy="45" r="1.7999999999999998" fill="#fff" opacity="0.64"/>
+  <circle cx="1152" cy="300" r="100" fill="#fff" opacity="0.8"/>
+  <circle cx="1152" cy="300" r="110" fill="#fff" opacity="0.1"/>
+  <path d="M0 780 Q 400 720 800 760 T 1600 740 V 1000 H0 Z" fill="#7a5563" opacity="0.5"/>
+  <path d="M0 900 Q 400 840 800 880 T 1600 860 V 1000 H0 Z" fill="#dd9070" opacity="0.75"/>
+  <path d="M0 1020 Q 400 960 800 1000 T 1600 980 V 1000 H0 Z" fill="#2a2740" opacity="0.5"/>
+  <rect width="1600" height="1000" fill="url(#fade)"/>
+  <text x="28" y="954" fill="#fff" font-family="Georgia, serif" font-size="34" font-weight="700" opacity="0.95">9 ปีของเรา</text>
+  <text x="30" y="980" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="15" letter-spacing="3" opacity="0.78">OUR JOURNEY TOGETHER</text>
+</svg>

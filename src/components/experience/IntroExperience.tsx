@@ -53,7 +53,7 @@ export function IntroExperience({
     setPlaying(true); // เปิดเสียงไว้ (เสียงบรรยากาศจะเล่นแม้ยังไม่มีไฟล์เพลงคลอ)
     const audio = audioRef.current;
     if (audio) {
-      audio.volume = 0.15;
+      audio.volume = 0.8;
       audio.play().catch(() => {}); // ไม่มีไฟล์/ถูกบล็อก ก็ไม่เป็นไร
     }
   }, []);

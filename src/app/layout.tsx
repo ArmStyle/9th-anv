@@ -16,8 +16,26 @@ const notoSerifThai = Noto_Serif_Thai({
 });
 
 export const metadata: Metadata = {
-  title: "9 ปีของเรา",
-  description: "บันทึกการเดินทางของเราสองคน ครบรอบ 9 ปี",
+  title: "9 ปีของเรา 💕",
+  description: "ของขวัญครบรอบ 9 ปีที่เดินทางมาด้วยกัน ผ่านหลายเมือง หลายประเทศ แต่คนข้างๆ ยังเป็นคนเดิม",
+  openGraph: {
+    title: "9 ปีของเรา 💕",
+    description: "ของขวัญครบรอบ 9 ปีที่เดินทางมาด้วยกัน ผ่านหลายเมือง หลายประเทศ แต่คนข้างๆ ยังเป็นคนเดิม",
+    type: "website",
+    locale: "th_TH",
+    images: [
+      {
+        url: "/media/hero.svg",
+        width: 1600,
+        height: 1000,
+        alt: "9 ปีของเรา",
+      },
+    ],
+  },
+  robots: {
+    index: false,   // ไม่อยากให้ Google index (เว็บส่วนตัว)
+    follow: false,
+  },
 };
 
 export const viewport: Viewport = {

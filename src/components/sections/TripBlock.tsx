@@ -18,15 +18,17 @@ function TripVideo({
   src,
   posterSrc,
   posterAlt,
+  mobileAspect = "9/16",
 }: {
   src: string;
   posterSrc: string;
   posterAlt: string;
+  /** aspect ratio บน mobile เช่น "9/16", "3/4", "4/5" ค่าเริ่มต้น "9/16" */
+  mobileAspect?: string;
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // เล่นอัตโนมัติเมื่อเลื่อนเข้ามา ≥ 30%, หยุดเมื่อออก
   useEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
@@ -46,11 +48,17 @@ function TripVideo({
 
   return (
     <div ref={wrapRef} className="relative w-full overflow-hidden rounded-2xl bg-sunset-gradient sm:rounded-3xl">
-      {/* aspect portrait 9:16 mobile, 4:5 sm+ */}
-      <div className="aspect-[9/16] w-full  sm:aspect-[4/5]">
+      {/*
+        mobile: ใช้ mobileAspect จริงของไฟล์
+        sm+: 4:5 เหมือนกันทุก section
+      */}
+      <div
+        className="relative w-full sm:aspect-[4/5]"
+        style={{ aspectRatio: mobileAspect }}
+      >
         <video
           ref={videoRef}
-          className="w-full"
+          className="absolute inset-0 h-full w-full object-cover"
           src={src}
           poster={posterSrc}
           muted
@@ -156,6 +164,7 @@ export function TripBlock({ data }: { data: TripSection }) {
             src={data.video.src}
             posterSrc={data.video.poster.src}
             posterAlt={data.video.poster.alt}
+            mobileAspect={data.videoAspect ?? "9/16"}
           />
         </Reveal>
       )}

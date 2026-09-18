@@ -50,11 +50,13 @@ export function IntroExperience({
 
   const start = useCallback(() => {
     setStarted(true);
-    setPlaying(true); // เปิดเสียงไว้ (เสียงบรรยากาศจะเล่นแม้ยังไม่มีไฟล์เพลงคลอ)
+    setPlaying(true);
     const audio = audioRef.current;
     if (audio) {
-      audio.volume = 0.8;
-      audio.play().catch(() => {}); // ไม่มีไฟล์/ถูกบล็อก ก็ไม่เป็นไร
+      audio.volume = 0.2;
+      // load() ก่อน play() สำคัญมากบน iOS — ทำให้ browser รู้ว่า user gesture trigger นี้
+      audio.load();
+      audio.play().catch(() => {}); // silent catch: ถ้า browser ยัง block ก็ไม่พัง
     }
   }, []);
 
@@ -73,7 +75,13 @@ export function IntroExperience({
   return (
     <>
       {/* เพลงบรรเลง (วนซ้ำ) — ถ้ายังไม่มีไฟล์ music.src จะเงียบเฉยๆ ไม่ error */}
-      <audio ref={audioRef} src={music.src} loop preload="auto" />
+      {/* เพลงบรรเลง — หลาย source เผื่อ browser support:
+          webm (Chrome/Firefox/Edge/iOS16+) → m4a (iOS เก่า / Safari) */}
+      <audio ref={audioRef} loop preload="metadata">
+        <source src={music.src} type="audio/webm" />
+        {/* ถ้ามีไฟล์ .m4a วางไว้เช่นกัน: */}
+        <source src={music.src.replace(".webm", ".m4a")} type="audio/mp4" />
+      </audio>
 
       {children}
 

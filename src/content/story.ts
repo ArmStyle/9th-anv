@@ -194,8 +194,6 @@ export const content: SiteContent = {
     {
       type: "trip",
       id: "taipei-3",
-      // side: "right",
-      // layout: "overlay",
       place: { city: "ไทเป", country: "ไต้หวัน" },
       effect: "aurora",
       ambient: "city",
@@ -203,6 +201,7 @@ export const content: SiteContent = {
       cover: { src: "/media/trips/taipei-3/photo-1.jpg", alt: "taipei-3", width: 1440, height: 1800 },
       note: "กลับมาที่เดิมเป็นครั้งที่สาม เหมือนเป็นบ้านหลังที่สอง ทริปนี้เน้นกิน ไม่ถ่ายรูปตัวเอง ไม่ค่อยลงสตอรี่ ไม่เอาอะไรเลย เดินชิล เดินหาของกิน ถ่ายแต่รูปของกิน หาของช้อปปิ้งนิดๆ หน่อยๆ ได้เดินย่านใหม่ เป็นอีกทริปชิลมากๆ แต่ก็ดีมากๆ เลยนะ",
       video: { src: "/media/trips/taipei-3/clip-1.mp4", poster: { src: "/media/trips/taipei-3/clip-1.jpg", alt: "ไทเป", width: 720, height: 960 } },
+      videoAspect: "3/4",
       photos: []
     },
 
@@ -226,7 +225,7 @@ export const content: SiteContent = {
       ],   
     },
 
-    { type: "quote", id: "quote-3", text: "9 ปี กับอีกหลายเมืองที่เรายังไม่ได้ไป... ขอจองที่ข้างๆ เธอไว้ทุกทริปนะ" },
+    { type: "quote", id: "quote-3", text: "9 ปี กับอีกหลายเมืองที่เรายังไม่ได้ไป... ขอจองที่ข้างๆ หนูไว้ทุกทริปนะ" },
   ],
 
   closing: {

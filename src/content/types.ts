@@ -174,6 +174,12 @@ export type TripSection = {
   cover: MediaImage;
   /** วิดีโอหลัก เต็มแถว (autoplay เมื่อเลื่อนถึง) */
   video?: MediaVideo;
+  /**
+   * aspect ratio ของวิดีโอบน mobile (ค่าเริ่มต้น "9/16")
+   * ใส่ตรงๆ ได้เลย เช่น "9/16", "3/4", "4/5", "16/9"
+   * sm+ จะใช้ "4/5" เสมอ (ยกเว้น landscape จะยังคง ratio เดิม)
+   */
+  videoAspect?: string;
   /** รูปเพิ่มเติม (horizontal scroll strip) */
   photos?: MediaImage[];
   /** ลูกเล่น animation ประจำสถานที่ (ออปชัน) */
